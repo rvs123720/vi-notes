@@ -3,6 +3,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Editor from "./pages/Editor";
+import Evaluate from "./pages/Evaluate";
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/editor" element={<Editor />} />
         <Route path="/editor/:id" element={<Editor />} />
+
+        {}
+        <Route path="/evaluate/:id" element={<Evaluate />} />
       </Routes>
     </BrowserRouter>
   );

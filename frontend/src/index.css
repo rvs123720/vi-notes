@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f6fb;
+  font-family: 'Times New Roman', Times, serif;
+  background: #90cde7;
 }
 
 .auth-container {
@@ -20,7 +20,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(61, 111, 197, 0);
 }
 
 .auth-right {
@@ -57,13 +57,13 @@ body {
   padding: 10px;
   margin: 8px 0;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid #1a0202;
 }
 
 .auth-box button {
   width: 100%;
   padding: 10px;
-  background: #4c6ef5;
+  background: #4261de;
   color: white;
   border: none;
   border-radius: 6px;
@@ -71,10 +71,9 @@ body {
 }
 
 .auth-box button:hover {
-  background: #3b5bdb;
+  background: #244be4;
 }
 
-/* DASHBOARD */
 .container {
   display: flex;
   height: 100vh;
@@ -82,8 +81,8 @@ body {
 
 .sidebar {
   width: 240px;
-  background: #1e1e2f;
-  color: white;
+  background: #4edaf3dc;
+  color: rgb(5, 35, 73);
   padding: 20px;
 }
 
@@ -115,11 +114,11 @@ body {
 }
 
 .note-card {
-  background: white;
+  background: rgb(11, 232, 217);
   padding: 15px;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(48, 14, 14, 0.1);
   transition: 0.2s;
 }
 
@@ -131,7 +130,6 @@ body {
   margin-bottom: 8px;
 }
 
-/* EDITOR */
 .editor-container {
   max-width: 900px;
   margin: auto;
@@ -144,32 +142,31 @@ body {
   font-size: 18px;
   margin-bottom: 10px;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid #3c3fff;
 }
 
 .editor-container button {
   padding: 10px 20px;
   background: #4c6ef5;
-  color: white;
+  color: rgb(17, 152, 242);
   border: none;
   border-radius: 6px;
 }
 
-/* DARK MODE */
 .dark {
-  background: #121212;
-  color: white;
+  background: #2b2222;
+  color: rgb(220, 223, 226);
 }
 
 .dark .main {
-  background: #121212;
+  background: #315f7d;
 }
 
 .dark .note-card {
-  background: #1e1e1e;
+  background: #072f55;
   color: white;
 }
 
 .dark .sidebar {
-  background: #0f172a;
+  background: #187279;
 }
