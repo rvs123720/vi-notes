@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: 'Times New Roman', Times, serif;
-  background: #0eb0f5;
+  background: #90cde7;
 }
 
 .auth-container {
@@ -20,7 +20,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(117, 111, 111, 0);
+  background: rgba(61, 111, 197, 0);
 }
 
 .auth-right {
@@ -63,7 +63,7 @@ body {
 .auth-box button {
   width: 100%;
   padding: 10px;
-  background: #4c6ef5;
+  background: #4261de;
   color: white;
   border: none;
   border-radius: 6px;
@@ -71,7 +71,7 @@ body {
 }
 
 .auth-box button:hover {
-  background: #3b5bdb;
+  background: #244be4;
 }
 
 .container {
@@ -81,8 +81,8 @@ body {
 
 .sidebar {
   width: 240px;
-  background: #1e1e2f;
-  color: white;
+  background: #4edaf3dc;
+  color: rgb(5, 35, 73);
   padding: 20px;
 }
 
@@ -114,11 +114,11 @@ body {
 }
 
 .note-card {
-  background: white;
+  background: rgb(11, 232, 217);
   padding: 15px;
   border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 10px rgba(48, 14, 14, 0.1);
   transition: 0.2s;
 }
 
@@ -142,24 +142,24 @@ body {
   font-size: 18px;
   margin-bottom: 10px;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid #3c3fff;
 }
 
 .editor-container button {
   padding: 10px 20px;
   background: #4c6ef5;
-  color: white;
+  color: rgb(17, 152, 242);
   border: none;
   border-radius: 6px;
 }
 
 .dark {
   background: #2b2222;
-  color: rgb(220, 150, 150);
+  color: rgb(220, 223, 226);
 }
 
 .dark .main {
-  background: #021623;
+  background: #315f7d;
 }
 
 .dark .note-card {
@@ -168,5 +168,5 @@ body {
 }
 
 .dark .sidebar {
-  background: #083e42;
+  background: #187279;
 }
