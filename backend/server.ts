@@ -8,39 +8,43 @@ import authRoutes from "./routes/auth";
 import noteRoutes from "./routes/notes";
 
 dotenv.config();
-
 dns.setDefaultResultOrder("ipv4first");
 
 const app: Application = express();
 
-
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "https://vi-notes-lake.vercel.app"
-    ],
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+
+      if (
+        origin.includes("localhost") ||      
+        origin.includes("vercel.app")        
+      ) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
+
 app.use(express.json());
 
-mongoose.connect(process.env.MONGO_URI as string, {
-  family: 4
-})
-.then(() => {
-  console.log("MongoDB Connected");
-})
-.catch((err) => {
-  console.error("Mongo Error:", err);
-});
-
+mongoose
+  .connect(process.env.MONGO_URI as string, { family: 4 })
+  .then(() => {
+    console.log("MongoDB Connected");
+  })
+  .catch((err) => {
+    console.error("Mongo Error:", err);
+  });
 
 app.use("/api/auth", authRoutes);
 app.use("/api/notes", noteRoutes);
-
 
 app.get("/", (req, res) => {
   res.send("API is running...");
