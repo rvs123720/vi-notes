@@ -4,7 +4,6 @@ import authMiddleware from "../middleware/auth";
 
 const router = express.Router();
 
-// ✅ CREATE NOTE
 router.post("/", authMiddleware, async (req: any, res) => {
   try {
     const note = new Note({
@@ -12,7 +11,7 @@ router.post("/", authMiddleware, async (req: any, res) => {
       content: req.body.content,
       keystrokes: req.body.keystrokes || 0,
       pastes: req.body.pastes || 0,
-      user: req.user.id // Extracts ID from the verified token
+      user: req.user.id 
     });
 
     await note.save();
@@ -23,10 +22,8 @@ router.post("/", authMiddleware, async (req: any, res) => {
   }
 });
 
-// ✅ GET ALL NOTES (Only for the logged-in user)
 router.get("/", authMiddleware, async (req: any, res) => {
   try {
-    // This finds ONLY the notes belonging to YOU
     const notes = await Note.find({ user: req.user.id }).sort({ createdAt: -1 });
     res.json(notes);
   } catch (err) {
@@ -35,7 +32,6 @@ router.get("/", authMiddleware, async (req: any, res) => {
   }
 });
 
-// ✅ GET SINGLE NOTE
 router.get("/:id", authMiddleware, async (req: any, res) => {
   try {
     const note = await Note.findOne({
@@ -50,7 +46,6 @@ router.get("/:id", authMiddleware, async (req: any, res) => {
   }
 });
 
-// ✅ UPDATE NOTE
 router.put("/:id", authMiddleware, async (req: any, res) => {
   try {
     const note = await Note.findOneAndUpdate(
@@ -71,7 +66,6 @@ router.put("/:id", authMiddleware, async (req: any, res) => {
   }
 });
 
-// ✅ DELETE NOTE
 router.delete("/:id", authMiddleware, async (req: any, res) => {
   try {
     const note = await Note.findOneAndDelete({
