@@ -18,16 +18,14 @@ app.use(
       if (!origin) return callback(null, true);
 
       if (
-        origin.includes("localhost") ||      
-        origin.includes("vercel.app")        
+        origin.includes("localhost") ||
+        origin.endsWith(".vercel.app")
       ) {
         return callback(null, true);
       }
 
       return callback(new Error("Not allowed by CORS"));
     },
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
@@ -48,6 +46,14 @@ app.use("/api/notes", noteRoutes);
 
 app.get("/", (req, res) => {
   res.send("API is running...");
+});
+
+app.use((err: any, req: any, res: any, next: any) => {
+  console.error("SERVER ERROR:", err.message);
+  res.status(500).json({
+    message: "Server error",
+    error: err.message,
+  });
 });
 
 const PORT = process.env.PORT || 5000;
