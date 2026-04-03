@@ -2,12 +2,11 @@
   "compilerOptions": {
     "target": "ES6",
     "module": "CommonJS",
-    "moduleResolution": "node",
-    "rootDir": "./",
-    "outDir": "./dist",
+    "rootDir": ".",
+    "outDir": "dist",
     "esModuleInterop": true,
     "strict": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
-  }
+    "skipLibCheck": true
+  },
+  "include": ["server.ts", "routes/**/*.ts", "models/**/*.ts", "middleware/**/*.ts"]
 }
