@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f6fb;
+  font-family: 'Times New Roman', Times, serif;
+  background: #0eb0f5;
 }
 
 .auth-container {
@@ -20,7 +20,7 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(117, 111, 111, 0);
 }
 
 .auth-right {
@@ -57,7 +57,7 @@ body {
   padding: 10px;
   margin: 8px 0;
   border-radius: 6px;
-  border: 1px solid #ccc;
+  border: 1px solid #1a0202;
 }
 
 .auth-box button {
@@ -74,7 +74,6 @@ body {
   background: #3b5bdb;
 }
 
-/* DASHBOARD */
 .container {
   display: flex;
   height: 100vh;
@@ -131,7 +130,6 @@ body {
   margin-bottom: 8px;
 }
 
-/* EDITOR */
 .editor-container {
   max-width: 900px;
   margin: auto;
@@ -155,21 +153,20 @@ body {
   border-radius: 6px;
 }
 
-/* DARK MODE */
 .dark {
-  background: #121212;
-  color: white;
+  background: #2b2222;
+  color: rgb(220, 150, 150);
 }
 
 .dark .main {
-  background: #121212;
+  background: #021623;
 }
 
 .dark .note-card {
-  background: #1e1e1e;
+  background: #072f55;
   color: white;
 }
 
 .dark .sidebar {
-  background: #0f172a;
+  background: #083e42;
 }

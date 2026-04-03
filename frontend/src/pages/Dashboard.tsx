@@ -17,17 +17,33 @@ export default function Dashboard() {
   }, []);
 
   const fetchNotes = async () => {
-    const res = await axios.get("http://localhost:5000/api/notes", {
-      headers: { Authorization: localStorage.getItem("token") },
-    });
-    setNotes(res.data);
+    try {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        console.log("No token found");
+        return;
+      }
+
+      const res = await axios.get("http://localhost:5000/api/notes", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      setNotes(res.data);
+    } catch (err: any) {
+      console.error("Error fetching notes:", err.response?.data || err.message);
+    }
   };
 
   const deleteNote = async (id: string) => {
-    if (!confirm("Delete this note?")) return;
+    const token = localStorage.getItem("token");
 
     await axios.delete(`http://localhost:5000/api/notes/${id}`, {
-      headers: { Authorization: localStorage.getItem("token") },
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     });
 
     fetchNotes();
@@ -46,7 +62,8 @@ export default function Dashboard() {
 
   return (
     <div className={dark ? "container dark" : "container"}>
-      {/* SIDEBAR */}
+      
+      {}
       <div className="sidebar">
         <h2>VI-NOTES</h2>
 
@@ -58,11 +75,11 @@ export default function Dashboard() {
         </button>
       </div>
 
-      {/* MAIN */}
+      {}
       <div className="main">
         <h2>Your Notes</h2>
 
-        {/* 🔍 SEARCH */}
+        {}
         <input
           placeholder="Search notes..."
           value={search}
@@ -86,8 +103,9 @@ export default function Dashboard() {
                 }}
               />
 
-              {/* BUTTONS */}
+              {}
               <div style={{ marginTop: "10px" }}>
+                
                 <button
                   onClick={() => navigate(`/editor/${note._id}`)}
                   style={{ marginRight: "5px" }}
@@ -95,9 +113,20 @@ export default function Dashboard() {
                   Edit
                 </button>
 
-                <button onClick={() => deleteNote(note._id)}>
+                <button
+                  onClick={() => deleteNote(note._id)}
+                  style={{ marginRight: "5px" }}
+                >
                   Delete
                 </button>
+
+                {}
+                <button
+                  onClick={() => navigate(`/evaluate/${note._id}`)}
+                >
+                  Evaluate
+                </button>
+
               </div>
             </div>
           ))}
