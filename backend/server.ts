@@ -14,7 +14,15 @@ dns.setDefaultResultOrder("ipv4first");
 const app: Application = express();
 
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://vi-notes-rvs.vercel.app"
+    ],
+    credentials: true
+  })
+);
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI as string, {
