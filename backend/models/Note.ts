@@ -1,14 +1,45 @@
-import mongoose from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
 
-const NoteSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-  },
-  content: {
-    type: String,
-    required: true,
-  },
-});
+export interface INote extends Document {
+  user: mongoose.Types.ObjectId;
+  title: string;
+  content: string;
+  keystrokes: number;
+  pastes: number;
+  createdAt: Date; 
+  updatedAt: Date;
+}
 
-export default mongoose.model("Note", NoteSchema);
+const NoteSchema: Schema = new Schema(
+  {
+    user: { 
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: "User", 
+      required: true 
+    },
+    title: { 
+      type: String, 
+      required: true,
+      trim: true 
+    },
+    content: { 
+      type: String, 
+      required: true 
+    },
+    keystrokes: { 
+      type: Number, 
+      default: 0 
+    },
+    pastes: { 
+      type: Number, 
+      default: 0 
+    },
+  },
+  { 
+    
+    timestamps: true 
+  }
+);
+
+
+export default mongoose.model<INote>("Note", NoteSchema);
