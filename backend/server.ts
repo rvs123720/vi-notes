@@ -2,13 +2,10 @@ import express, { Application } from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import dns from "dns";
-
 import authRoutes from "./routes/auth";
 import noteRoutes from "./routes/notes";
 
 dotenv.config();
-dns.setDefaultResultOrder("ipv4first");
 
 const app: Application = express();
 
@@ -16,14 +13,10 @@ app.use(
   cors({
     origin: (origin, callback) => {
       if (!origin) return callback(null, true);
-
-      if (
-        origin.includes("localhost") ||
-        origin.endsWith(".vercel.app")
-      ) {
+      // Allow localhost and any vercel branch deployment
+      if (origin.includes("localhost") || origin.endsWith(".vercel.app")) {
         return callback(null, true);
       }
-
       return callback(new Error("Not allowed by CORS"));
     },
     credentials: true,
@@ -32,14 +25,11 @@ app.use(
 
 app.use(express.json());
 
+// Removed the 'family: 4' and DNS comments for better Cloud compatibility
 mongoose
-  .connect(process.env.MONGO_URI as string, { family: 4 })
-  .then(() => {
-    console.log("MongoDB Connected");
-  })
-  .catch((err) => {
-    console.error("Mongo Error:", err);
-  });
+  .connect(process.env.MONGO_URI as string)
+  .then(() => console.log("MongoDB Connected"))
+  .catch((err) => console.error("Mongo Error:", err));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/notes", noteRoutes);
@@ -49,7 +39,6 @@ app.get("/", (req, res) => {
 });
 
 app.use((err: any, req: any, res: any, next: any) => {
-  console.error("SERVER ERROR:", err.message);
   res.status(500).json({
     message: "Server error",
     error: err.message,
@@ -57,7 +46,6 @@ app.use((err: any, req: any, res: any, next: any) => {
 });
 
 const PORT = process.env.PORT || 5000;
-
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
