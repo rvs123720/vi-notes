@@ -9,23 +9,20 @@ const API = axios.create({
 
 API.interceptors.request.use(
   (req) => {
+    // Check both common naming conventions to be safe
     const token = localStorage.getItem("token");
+    const profile = localStorage.getItem("profile");
 
     if (token) {
       req.headers.Authorization = `Bearer ${token}`;
+    } else if (profile) {
+      const parsed = JSON.parse(profile);
+      req.headers.Authorization = `Bearer ${parsed.token}`;
     }
 
     return req;
   },
   (error) => Promise.reject(error)
-);
-
-API.interceptors.response.use(
-  (res) => res,
-  (error) => {
-    console.error("API ERROR:", error.response?.data || error.message);
-    return Promise.reject(error);
-  }
 );
 
 export default API;
